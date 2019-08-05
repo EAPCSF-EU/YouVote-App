@@ -1,0 +1,166 @@
+.tab-form {
+    padding: 20px;
+}
+
+.panel-body > div:first-child > h1:first-child {
+    font-size: 20px;
+    /*font-weight: bolder;*/
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.rotate-180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    transition: 0.2s;
+}
+
+.transition-02 {
+    transition: 0.2s;
+}
+
+.panel-body span.select2-selection, .panel-body span.select2-selection ul.select2-selection__rendered li {
+    border-radius: 0;
+}
+
+.panel-body span.select2-selection input.select2-search__field, .panel-body span.select2-selection ul.select2-selection__rendered {
+    background-color: #f5f5f5 !important;
+}
+
+.box-solid .avatar-image {
+    max-width: 100%;
+    max-height: 400px;
+}
+
+.table-detail {
+    padding: 10px 20px;
+}
+
+.table-detail tr td {
+    padding: 10px 20px;
+}
+
+.panel-body {
+    overflow-x: auto;
+}
+
+.contest-item img {
+    max-width: 100%;
+}
+
+.c-image {
+    max-width: 200px;
+}
+
+.c-status {
+    width: 200px;
+    text-align: right;
+    padding: 20px 10px;
+}
+
+.c-status span {
+    width: 100%;
+    margin: 5px;
+    cursor: auto;
+    text-transform: uppercase;
+}
+
+.c-status .btn-success {
+    background-color: #00a65a !important;
+}
+
+.c-title {
+    padding: 0 20px;
+    width: calc(100% - 450px);
+}
+
+.c-title h3 {
+    margin-top: 0;
+}
+
+.c-title span {
+    font-size: 13px;
+}
+
+.c-title .label-incompleted{
+    font-size:11px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+.contest-form .checkbox-item {
+    padding-top: 30px;
+}
+
+.wi-1 {
+    max-width: 250px;
+    text-align: left;
+}
+
+.wi-3 {
+    max-width: 300px;
+    text-align: right;
+}
+
+.wi-2 {
+    width: calc(100% - 450px);
+    text-align: center;
+}
+
+.loading-2 {
+    display: none;
+}
+
+.delete {
+    color: #b0003a;
+}
+
+.contest-project-item {
+    padding: 0 20px;
+    border-bottom: 1px solid #eeeeee;
+    padding-top: 5px;
+}
+.cropper-widget{
+    width: 650px;
+    position: relative;
+    padding-top: 180px;
+    text-align: right;
+}
+
+
+.new-photo-area {
+    height: 160px !important;
+    width: 300px !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+}
+.cropper-buttons{
+    display: inline-block;
+}
+.cropper-widget .thumbnail {
+    max-height: 160px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 50%;
+    margin: 0;
+}
+
+.content-wrapper {
+  min-width: 768px;
+}
+
+.nav-pills > .active > a > .badge{
+background-color: #777777;
+color:#fff;
+}

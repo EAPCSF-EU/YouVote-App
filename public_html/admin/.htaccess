@@ -1,0 +1,10 @@
+#php_value memory_limit 64M
+AddDefaultCharset utf-8
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
+
+
