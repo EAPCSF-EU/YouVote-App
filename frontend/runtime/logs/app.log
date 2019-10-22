@@ -1,0 +1,67 @@
+2019-10-18 10:49:25 [::1][-][d7ulu2vb14s4862ccj3a7a7c4q][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: yii\web\Request::cookieValidationKey must be configured with a secret key. in /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/web/Request.php:1579
+Stack trace:
+#0 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/web/Request.php(1561): yii\web\Request->loadCookies()
+#1 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/web/User.php(586): yii\web\Request->getCookies()
+#2 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/web/User.php(314): yii\web\User->getIdentityAndDurationFromCookie()
+#3 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/web/User.php(707): yii\web\User->loginByCookie()
+#4 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/web/User.php(192): yii\web\User->renewAuthStatus()
+#5 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/base/Component.php(139): yii\web\User->getIdentity()
+#6 /Applications/MAMP/htdocs/votingappnew/frontend/components/Controller.php(24): yii\base\Component->__get('identity')
+#7 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/base/BaseObject.php(109): frontend\components\Controller->init()
+#8 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/base/Controller.php(86): yii\base\BaseObject->__construct(Array)
+#9 [internal function]: yii\base\Controller->__construct('site', Object(yii\web\Application), Array)
+#10 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/di/Container.php(376): ReflectionClass->newInstanceArgs(Array)
+#11 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/di/Container.php(156): yii\di\Container->build('frontend\\contro...', Array, Array)
+#12 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/BaseYii.php(345): yii\di\Container->get('frontend\\contro...', Array)
+#13 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/base/Module.php(642): yii\BaseYii::createObject('frontend\\contro...', Array)
+#14 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/base/Module.php(596): yii\base\Module->createControllerByID('site')
+#15 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/base/Module.php(522): yii\base\Module->createController('')
+#16 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('', Array)
+#17 /Applications/MAMP/htdocs/votingappnew/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 /Applications/MAMP/htdocs/votingappnew/public_html/index.php(19): yii\base\Application->run()
+#19 {main}
+2019-10-18 10:49:25 [::1][-][d7ulu2vb14s4862ccj3a7a7c4q][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SESSION = [
+    '__flash' => []
+    'lang' => 'en'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'voting.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9,ru;q=0.8'
+    'PATH' => '/usr/bin:/bin:/usr/sbin:/sbin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache'
+    'SERVER_NAME' => 'voting.local'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/Applications/MAMP/htdocs/votingappnew/public_html'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/Applications/MAMP/htdocs/votingappnew/public_html/index.php'
+    'REMOTE_PORT' => '51825'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1571395765.155
+    'REQUEST_TIME' => 1571395765
+    'argv' => []
+    'argc' => 0
+]

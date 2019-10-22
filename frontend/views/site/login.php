@@ -45,7 +45,6 @@ $this->registerJs($js, \yii\web\View::POS_READY);
             <br>
             <?= $form->field($model, 'password')->input('text', ['placeholder' => Yii::t('main','Password')]) ?>
 
-            <!--                --><? //= $form->field($model, 'rememberMe')->checkbox() ?>
             <div class="text-center" style="color:#999;margin:1em 0">
                 <?= Html::a(Yii::t('main', 'Forgot your password?'), ['site/request-password-reset']) ?>
             </div>
