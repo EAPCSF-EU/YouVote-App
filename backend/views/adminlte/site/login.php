@@ -41,7 +41,7 @@ $fieldOptions2 = [
 
         <div class="row">
             <div class="col-xs-8">
-                <?= $form->field($model, 'rememberMe')->checkbox()->label(Yii::t('main',$model->getAttributeLabel('rememberMe'))) ?>
+                <?php echo $form->field($model, 'rememberMe')->checkbox()->label(Yii::t('main',$model->getAttributeLabel('rememberMe'))) ?>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
