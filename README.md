@@ -1,5 +1,12 @@
 # Voting app for the Hackathon
 
+## Requirements
+- PHP v7 (Yii2 framework)
+- MySQL v5+ (config file `common/config/main-local.php`)
+- MailGun for mail (config file `common/config/params.php`)
+
+NB: For more detailed list along with running a check aganst the requirements, please run the /requirements.php
+
 ## Installation
 Once you download the source code, run `composer install` command. If you don't have Composer app, it is required to install composer first. 
 You can find initial database in  `db` folder at root directory. Import the database.
