@@ -1,11 +1,5 @@
 # YouVote App
 
-## General Info
-
-The public release of a web application ‘YouVote’ for public voting and
-evaluation of competitions / contests / hackathons developed within the EU-funded ‘Eastern
-Partnership Civil Society Facility –Regional Actions’ project: http://eapcivilsociety.eu/
-
 ## Table of Contents
 1. Description
 2. License
