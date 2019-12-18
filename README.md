@@ -110,3 +110,8 @@ http://localhost/
 ## Admin panel
 
 http://localhost/admin
+
+## 4. User Guidelines
+1. YouVote New Contest https://youtu.be/AgVrRWmbtsY
+2. YouVote New Voter https://youtu.be/cTzzdUgiH-U
+3. YouVote Voting https://youtu.be/Jeu-9mmivtE
