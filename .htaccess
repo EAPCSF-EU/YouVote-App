@@ -1,10 +1,8 @@
-#php_value memory_limit 64M
-AddDefaultCharset utf-8
+<IfModule mod_rewrite.c>
+    RewriteEngine on
 
-RewriteEngine on
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . index.php
-
-
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Otherwise forward it to index.php
+    RewriteRule . index.php
+</IfModule>
