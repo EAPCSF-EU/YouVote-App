@@ -23,13 +23,13 @@ class Menu
                 ],
                 [
                     'label' => Yii::t('main', 'Voter'),
-                    'icon' => 'user-o',
+                    'icon' => 'user',
                     'url' => ['/voter/index'],
                     'active' => Yii::$app->controller->id == 'voter'
                 ],
                 [
                     'label' => Yii::t('main', 'Contest'),
-                    'icon' => 'check-square-o',
+                    'icon' => 'check-square',
                     'url' => ['/contest/index'],
                     'active' => Yii::$app->controller->id == 'contest'
                 ],
@@ -38,7 +38,7 @@ class Menu
                     'label' => Yii::t('main', 'Settings'),
                     'icon' => 'cog',
                     'url' => ['/settings/account'],
-                    'template'=>'<a href="{url}">{icon} {label}</a>'
+//                    'template'=>'<a href="{url}">{icon} {label}</a>'
                 ],
             ];
     }

@@ -1,6 +1,26 @@
 html,
 body {
     height: 100%;
+    font-size: 0.95rem;
+}
+
+
+.nav-pills .nav-link {
+    padding: 15px 10px;
+    border-radius: 0;
+    color: #444;
+}
+.nav-pills .active {
+    border-left: 3px solid #007bff;
+}
+.nav-pills .nav-item {
+    border: none !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background: transparent;
+    color: #444;
+    border-top: 0;
+    font-weight: bold;
 }
 
 .wrap {
@@ -406,18 +426,18 @@ select.form-control {
 }
 
 .lang a {
-    padding: 7px !important;
+    padding: 10px !important;
     background: transparent !important;
     color: #6b6f82 !important;
     border-radius: 50% !important;
     border: 1px solid #6b6f82 !important;
-    margin-top: 5px !important;
-    padding-top: 5px !important;
+    padding-top: 6px !important;
+    text-align: center;
     margin-left: 5px;
 }
 
 .ru a {
-    width: 32px;
+    width: 35px;
     text-align: center;
 }
 
@@ -482,7 +502,7 @@ input.form-control[type='text'], textarea.form-control {
 
 form div.required label.control-label:after {
     color: #ef1011;
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 5 Free", serif;
     font-weight: 900;
     content: "\f069";
     padding-left: 5px;

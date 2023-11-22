@@ -39,7 +39,6 @@
   font-size: 0.8em;
 }
 .main-sidebar{
-  padding-top: 65px;
   font-family: Quicksand,Georgia,'Times New Roman',Times,serif;
   font-weight: 400;
   letter-spacing: 0.2px;
@@ -127,44 +126,45 @@ background-color: #F4F5FA;
 .custom-skin .user-panel > .info > a {
   color: #fff;
 }
-.custom-skin .sidebar-menu > li{
+.custom-skin .nav-sidebar > li{
   line-height: 1.8;
 }
-.custom-skin .sidebar-menu > li.header {
+.custom-skin .nav-sidebar > li.header {
   color: #4b646f;
   background: #383d3f;
 }
-.custom-skin .sidebar-menu > li > a {
+.custom-skin .nav-sidebar > li > a {
   border-left: 3px solid transparent;
 }
-.custom-skin .sidebar-menu > li:hover > a{
+.custom-skin .nav-sidebar > li:hover > a{
   color: #F6F6F6;
 }
-.custom-skin .sidebar-menu > li.active > a,
-.custom-skin .sidebar-menu > li.menu-open > a {
+.custom-skin .nav-sidebar > li > a.active,
+.custom-skin .nav-sidebar > li.menu-open > a {
   color: #F6F6F6;
   font-weight: 700;
   background: #1F2229;
 }
-.custom-skin .sidebar-menu > li.active > a {
+.custom-skin .nav-sidebar > li > a.active {
   border-left-color: #dd4b39;
+  background-color: #1F2229 !important;
 }
-.custom-skin .sidebar-menu > li > .treeview-menu {
+.custom-skin .nav-sidebar > li > .treeview-menu {
   margin: 0 1px;
   background: #2c3b41;
 }
-.custom-skin .sidebar a {
+.custom-skin .nav-sidebar a {
   /*color: #b8c7ce;*/
   color: #DCDCDC;
   font-size: 1em;
 }
-.custom-skin .sidebar a:hover {
+.custom-skin .nav-sidebar a:hover {
   text-decoration: none;
 }
-.custom-skin .sidebar-menu .treeview-menu > li > a {
+.custom-skin .nav-sidebar .treeview-menu > li > a {
   color: #8aa4af;
 }
-.custom-skin .sidebar-menu .treeview-menu > li.active > a,
+.custom-skin .sidebar-menu .treeview-menu > li > a.active,
 .custom-skin .sidebar-menu .treeview-menu > li > a:hover {
   color: #ffffff;
 }
@@ -201,4 +201,9 @@ background-color: #F4F5FA;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
+}
+
+.brand-link {
+  text-align: center;
+  padding: 20px 0;
 }

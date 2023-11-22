@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Davron
- * Date: 4/3/2019
- * Time: 12:16
- */
 
 use common\models\Project;
 use yii\helpers\Url;
@@ -82,53 +76,54 @@ $this->registerJs($js2, \yii\web\View::POS_BEGIN);
 $projectModel = new Project();
 ?>
 
-<div class="contest-projects">
-    <br>
-    <div class="row">
-        <div class="col-sm-12">
-            <?php if ($new) { ?>
-                    <div class="col-sm-12">
-                <?php } else { ?>
-                <div style="width: 230px; float: left;">
-                    <?= $this->render("menu", ['model' => $model]); ?>
-                </div>
-                <div class="col-sm-8">
+<div class="content">
+    <div class="container-fluid p-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <?php if ($new) { ?>
+                    <?php } else { ?>
+                        <div class="col-3">
+                            <?= $this->render("menu", ['model' => $model]); ?>
+                        </div>
                     <?php } ?>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <?php if ($new) { ?>
-                                <div class="wizard-item">
-                                    <div class="pull-left wi-1">
-                                        <h3 class="box-title"><?= Yii::t('main', 'Projects') ?></h3>
+                    <div class="col-8">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <?php if ($new) { ?>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <h3 class="box-title"><?= Yii::t('main', 'Projects') ?></h3>
+                                        </div>
+                                        <div class="col-4">
+                                            <h3 class="box-title"><?= Yii::t('main', 'Step 2 of 3') ?></h3>
+                                        </div>
+                                        <div class="col-4">
+                                            <a class="btn btn-primary"
+                                               href="<?= Url::to(['update', 'id' => $model->id, 'new' => true]) ?>"><i
+                                                        class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>
+                                            </a>
+                                            <a class="btn btn-primary"
+                                               href="<?= Url::to(['categories', 'id' => $model->id, 'new' => true]) ?>"><?= Yii::t('main', 'Save & Continue') ?>&ensp;<i
+                                                        class="glyphicon glyphicon-chevron-right"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="pull-left wi-2">
-                                        <h3 class="box-title"><?= Yii::t('main', 'Step 2 of 3') ?></h3>
-                                    </div>
-                                    <div class="pull-right wi-3">
-                                        <a class="btn btn-primary"
-                                           href="<?= Url::to(['update', 'id' => $model->id, 'new' => true]) ?>"><i
-                                                    class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>
-                                        </a>
-                                        <a class="btn btn-primary"
-                                           href="<?= Url::to(['categories', 'id' => $model->id, 'new' => true]) ?>"><?= Yii::t('main', 'Save & Continue') ?>&ensp;<i
-                                                    class="glyphicon glyphicon-chevron-right"></i></a>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            <?php } else { ?>
-                                <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'), ['view','id'=>$model->id],
-                                    ['class' => 'btn btn-info']) ?>
-                            <?php } ?>
-                        </div>
+                                <?php } else { ?>
+                                    <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'), ['view', 'id' => $model->id],
+                                        ['class' => 'btn btn-info']) ?>
+                                <?php } ?>
+                            </div>
 
-                        <div class="panel-body">
-                            <?= $this->render('project_form', ['model' => $model, 'projectModel' => $projectModel]) ?>
-                        </div>
+                            <div class="card-body">
+                                <?= $this->render('project_form', ['model' => $model, 'projectModel' => $projectModel]) ?>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <input type="hidden" id="confirm-text" value="<?= Yii::t('main', 'Are you sure you want to delete this item?') ?>">
+</div>

@@ -16,6 +16,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/custom.css',
         'css/custom-skin.css',
+        'css/font-awesome/all.css',
         'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700'
     ];
     public $js = [
@@ -29,6 +30,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'dmstr\web\AdminLteAsset',
+        'dmstr\adminlte\web\AdminLteAsset',
     ];
 }
