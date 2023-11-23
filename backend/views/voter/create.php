@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="content">
     <div class="container-fluid bg-white p-4 border">
-        <div class="box box-solid">
-            <div class="box-body">
+        <div class="card card-default">
+            <div class="card-body">
                 <?= $this->render('_form', [
                     'model' => $model,
                 ]) ?>

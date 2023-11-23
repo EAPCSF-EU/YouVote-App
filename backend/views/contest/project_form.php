@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sarvar
- * Date: 4/4/19
- * Time: 12:14 PM
- */
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
