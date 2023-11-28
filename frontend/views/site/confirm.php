@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Davron
- * Date: 4/4/2019
- * Time: 22:14
- */
 
 /** @var $this \yii\web\View */
 $this->title = Yii::t('main','Confirm');

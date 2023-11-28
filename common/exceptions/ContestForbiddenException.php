@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sarvar
- * Date: 4/1/19
- * Time: 3:21 PM
- */
 
 namespace common\exceptions;
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Davron
- * Date: 3/19/2019
- * Time: 22:47
- */
 
 namespace backend\components;
 

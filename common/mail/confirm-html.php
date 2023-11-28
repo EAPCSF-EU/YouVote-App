@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Davron
- * Date: 3/22/2019
- * Time: 23:15
- */
 use common\components\App;
 
 /** @var $voter \common\models\Voter */

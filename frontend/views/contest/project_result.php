@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sarvar
- * Date: 4/2/19
- * Time: 10:16 PM
- */
 
 echo "<div class='row'>";
 

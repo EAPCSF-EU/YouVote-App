@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Davron
- * Date: 3/19/2019
- * Time: 22:46
- */
-
 namespace common\components;
 
 use Yii;
