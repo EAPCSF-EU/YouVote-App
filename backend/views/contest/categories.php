@@ -85,17 +85,17 @@ $categoryModel = new Category();
                     </div>
                     <div class="col-sm-8">
 
-                        <div class="card card-default">
+                        <div class="card card-light">
                             <div class="card-header">
                                 <?php if ($new) { ?>
-                                    <div class="wizard-item">
-                                        <div class="pull-left wi-1">
+                                    <div class="d-flex justify-content-between bd-highlight pt-1">
+                                        <div class="bd-highlight">
                                             <h3 class="box-title"><?= Yii::t('main', 'Categories') ?></h3>
                                         </div>
-                                        <div class="pull-left wi-2">
+                                        <div class="bd-highlight">
                                             <h3 class="box-title"><?= Yii::t('main', 'Step 3 of 3') ?></h3>
                                         </div>
-                                        <div class="pull-right wi-3">
+                                        <div class="bd-highlight">
                                             <a class="btn btn-primary"
                                                href="<?= Url::to(['projects', 'id' => $model->id, 'new' => true]) ?>"><i
                                                         class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>
@@ -104,7 +104,6 @@ $categoryModel = new Category();
                                                href="<?= Url::to(['view', 'id' => $model->id]) ?>"><?= Yii::t('main', 'Save & Continue') ?>&ensp;<i
                                                         class="glyphicon glyphicon-chevron-right"></i></a>
                                         </div>
-                                        <div class="clearfix"></div>
                                     </div>
                                 <?php } else { ?>
                                     <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'), ['view', 'id' => $model->id],

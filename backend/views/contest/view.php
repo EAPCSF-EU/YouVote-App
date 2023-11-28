@@ -42,7 +42,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 
                     <div class="col-8">
 
-                        <div class="card caret-default">
+                        <div class="card card-light">
                             <div class="card-header">
                                 <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Contests'), ['/contest'], ['class' => 'btn btn-info']) ?>
                             </div>

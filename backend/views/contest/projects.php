@@ -89,17 +89,17 @@ $projectModel = new Project();
                     <?php } ?>
 
                     <div class="col-8">
-                        <div class="card card-default">
+                        <div class="card card-light">
                             <div class="card-header">
                                 <?php if ($new) { ?>
-                                    <div class="row">
-                                        <div class="col-4">
+                                    <div class="d-flex justify-content-between bd-highlight pt-1">
+                                        <div class="bd-highlight">
                                             <h3 class="box-title"><?= Yii::t('main', 'Projects') ?></h3>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="bd-highlight">
                                             <h3 class="box-title"><?= Yii::t('main', 'Step 2 of 3') ?></h3>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="bd-highlight">
                                             <a class="btn btn-primary"
                                                href="<?= Url::to(['update', 'id' => $model->id, 'new' => true]) ?>"><i
                                                         class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>

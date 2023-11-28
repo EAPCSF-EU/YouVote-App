@@ -32,9 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-
-
+                    <div class="card card-light">
                         <div class="card-body" style="overflow: visible">
                             <div class="row">
                                 <div class="col-8">

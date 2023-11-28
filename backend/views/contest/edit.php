@@ -22,14 +22,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 
                     <div class="col-8">
-                        <div class="card card-default">
+                        <div class="card card-light">
                             <div class="card-header">
-                                <?= Html::a('<i class="fa fa-chevron-left"></i> ' .
-                                    Yii::t('main', 'Overview'), ['view', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
+                                <div class="d-flex justify-content-between bd-highlight pt-1">
+                                    <?= Html::a('<i class="fa fa-chevron-left"></i> ' .
+                                        Yii::t('main', 'Overview'), ['view', 'id' => $model->id], ['class' => 'btn btn-success text-white']) ?>
 
-                                <?= Html::submitButton('<i class="fa fa-check"></i> ' . Yii::t('main', 'Save'), [
-                                    'id' => 'contest-form-submit',
-                                    'class' => 'btn btn-primary pull-right']) ?>
+                                    <?= Html::submitButton('<i class="fa fa-check"></i> ' . Yii::t('main', 'Save'), [
+                                        'id' => 'contest-form-submit',
+                                        'class' => 'btn btn-primary pull-right']) ?>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <?= $this->render('_form', ['model' => $model, "new" => false]); ?>

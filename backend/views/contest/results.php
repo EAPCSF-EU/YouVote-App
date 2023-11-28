@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $this->render("menu", ['model' => $contest]); ?>
                     </div>
                     <div class="col-9">
-                        <div class="card card-default">
+                        <div class="card card-light">
                             <div class="card-header">
                                 <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'),
                                     ['view', 'id' => $contest->id], ['class' => 'btn btn-info']) ?>
