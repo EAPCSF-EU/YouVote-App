@@ -65,7 +65,7 @@ class ContestController extends Controller
     public function actionUpload()
     {
         $fileName = 'file';
-        $uploadPath = Yii::getAlias('@webroot').'/..' . Yii::$app->params['image_path'];
+        $uploadPath = Yii::getAlias('@webroot') . '/..' . Yii::$app->params['image_path'];
 
         if (isset($_FILES[$fileName])) {
             $file = UploadedFile::getInstanceByName($fileName);
@@ -76,6 +76,7 @@ class ContestController extends Controller
 
         return false;
     }
+
     /**
      * Lists all Contest models.
      * @return mixed
@@ -181,7 +182,8 @@ class ContestController extends Controller
         ];
     }
 
-    public function actionResults($id, $download=false){
+    public function actionResults($id, $download = false)
+    {
 
         $contest = Contest::findOne(['id' => $id]);
 
@@ -192,31 +194,32 @@ class ContestController extends Controller
         $results_by_category = $query2
             ->select("SUM(score) as total, category_id, project_id, count(id) as votes_count")
             ->from(Votes::tableName())
-            ->where(['contest_id'=>$id])
+            ->where(['contest_id' => $id])
             ->groupBy("category_id, project_id")->all();
 
-        if($download==true){
-            return $this->renderPartial('summary_table', 
+        if ($download == true) {
+            return $this->renderPartial('summary_table',
                 [
-                    'results_by_category'=>$results_by_category, 
-                    'contest'=>$contest, 
-                    'is_download_button_visible'=>false,
-                    'download_to_excel'=>true
+                    'results_by_category' => $results_by_category,
+                    'contest' => $contest,
+                    'is_download_button_visible' => false,
+                    'download_to_excel' => true
                 ]);
         }
-                
-        return $this->render('results', 
+
+        return $this->render('results',
             [
-                'results_by_category'=>$results_by_category, 
-                'contest'=>$contest
+                'results_by_category' => $results_by_category,
+                'contest' => $contest
             ]);
     }
 
-    public function actionDownload($id){
+    public function actionDownload($id)
+    {
         $project = Project::findOne($id);
-        $votes = Votes::find()->where(['project_id'=>$id])->orderBy(['user_id'=>SORT_ASC])->all();
-        $voters = Votes::find()->where(['project_id'=>$id])->groupBy(['user_id'])->asArray()->all();
-        return $this->renderPartial('download', ['votes'=>$votes, 'project'=>$project, 'voters'=>$voters]);
+        $votes = Votes::find()->where(['project_id' => $id])->orderBy(['user_id' => SORT_ASC])->all();
+        $voters = Votes::find()->where(['project_id' => $id])->groupBy(['user_id'])->asArray()->all();
+        return $this->renderPartial('download', ['votes' => $votes, 'project' => $project, 'voters' => $voters]);
     }
 
     public function actionDeleteProject($id)
@@ -274,7 +277,7 @@ class ContestController extends Controller
 
             $model->timezone_diff = $post['timezone_diff'];
             $model->scenario = 'check_date';
-            
+
             if ($model->save()) {
                 if (Yii::$app->request->post('new') == 1)
                     return $this->redirect(['projects', 'id' => $model->id, 'new' => true]);
@@ -287,22 +290,22 @@ class ContestController extends Controller
         ]);
     }
 
-    public function actionPublish($id, $public){
+    public function actionPublish($id, $public)
+    {
         $model = $this->findModel($id);
-        $model->public = (int) !$public;
-       
-        if(count($model->categories) < 2 || count($model->projects) < 2){
+        $model->public = (int)!$public;
+
+        if (count($model->categories) < 2 || count($model->projects) < 2) {
             Yii::$app->session->addFlash('warning', Yii::t('main', 'You cannot publish the contest. Enter at least one criteria and project.'));
-        }
-        elseif($model->save()){
-            if($model->public)
+        } elseif ($model->save()) {
+            if ($model->public)
                 Yii::$app->session->addFlash('success', Yii::t('main', 'Contest is published'));
             else
                 Yii::$app->session->addFlash('success', Yii::t('main', 'Contest is unpublished'));
         }
 
-       return $this->redirect(['view', 'id' => $model->id]);
-       
+        return $this->redirect(['view', 'id' => $model->id]);
+
     }
 
     /**
@@ -318,7 +321,7 @@ class ContestController extends Controller
     {
         $model = $this->findModel($id);
         $model->delete();
-        
+
         Yii::$app->session->setFlash('success', Yii::t('main', 'Contest has been deleted.'));
         return $this->redirect(['index']);
     }

@@ -17,15 +17,25 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-9">
                         <div class="card card-light">
                             <div class="card-header">
-                                <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'),
-                                    ['view', 'id' => $contest->id], ['class' => 'btn btn-info']) ?>
+                                <div class="d-flex justify-content-between bd-highlight pt-1">
+                                    <div>
+                                        <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'),
+                                            ['view', 'id' => $contest->id], ['class' => 'btn btn-info text-white']) ?>
+                                    </div>
+                                    <h3 class="text-center">
+                                        <?= Yii::t('main', 'Results') ?>
+                                    </h3>
+                                    <div>
+                                        <div class="text-center">
+                                            <?= Html::a('<i class="fa fa-file-excel"></i> ' . Yii::t('main', 'Download summary'), ['', 'id' => $contest->id, 'download' => 'true'], ['class' => 'btn btn-success text-white']) ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <h3 class="text-center">
-                                    <?= Yii::t('main', 'Results') ?>
-                                    <?= Html::a('<i class="fa fa-file-excel-o"></i> ' . Yii::t('main', 'Download summary'), ['', 'id' => $contest->id, 'download' => 'true'], ['class' => 'btn btn-success']) ?>
-                                </h3>
+
                                 <hr>
+
                                 <div class="col-sm-12">
                                     <?php
                                     echo Yii::$app->controller->renderPartial('summary_table',
