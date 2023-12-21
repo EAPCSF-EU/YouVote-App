@@ -1,6 +1,7 @@
 <?php
+
+use dmstr\adminlte\widgets\Alert;
 use yii\widgets\Breadcrumbs;
-use dmstr\widgets\Alert;
 
 ?>
 <div class="content-wrapper">

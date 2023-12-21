@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Davron
- * Date: 4/3/2019
- * Time: 12:16
- */
 
 use common\models\Category;
 use yii\helpers\Url;
@@ -80,48 +74,45 @@ $this->registerJs($js2, \yii\web\View::POS_BEGIN);
 $categoryModel = new Category();
 ?>
 
-<div class="contest-projects">
-    <br>
-    <div class="row">
-        <div class="col-sm-12">
-            <?php if ($new) { ?>
+<div class="content">
+    <div class="container-fluid p-4">
+
+        <div class="row">
             <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-3">
+                        <?= $this->render("menu", ['model' => $model]); ?>
+                    </div>
+                    <div class="col-sm-8">
 
-                <?php } else { ?>
-                <div style="width: 230px; float: left;">
-                    <?= $this->render("menu", ['model' => $model]); ?>
-                </div>
-                <div class="col-sm-8">
-                    <?php } ?>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <?php if ($new) { ?>
-                                <div class="wizard-item">
-                                    <div class="pull-left wi-1">
-                                        <h3 class="box-title"><?= Yii::t('main', 'Categories') ?></h3>
+                        <div class="card card-light">
+                            <div class="card-header">
+                                <?php if ($new) { ?>
+                                    <div class="d-flex justify-content-between bd-highlight pt-1">
+                                        <div class="bd-highlight">
+                                            <h3 class="box-title"><?= Yii::t('main', 'Categories') ?></h3>
+                                        </div>
+                                        <div class="bd-highlight">
+                                            <h3 class="box-title"><?= Yii::t('main', 'Step 3 of 3') ?></h3>
+                                        </div>
+                                        <div class="bd-highlight">
+                                            <a class="btn btn-primary"
+                                               href="<?= Url::to(['projects', 'id' => $model->id, 'new' => true]) ?>"><i
+                                                        class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>
+                                            </a>
+                                            <a class="btn btn-primary"
+                                               href="<?= Url::to(['view', 'id' => $model->id]) ?>"><?= Yii::t('main', 'Save & Continue') ?>&ensp;<i
+                                                        class="glyphicon glyphicon-chevron-right"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="pull-left wi-2">
-                                        <h3 class="box-title"><?= Yii::t('main', 'Step 3 of 3') ?></h3>
-                                    </div>
-                                    <div class="pull-right wi-3">
-                                        <a class="btn btn-primary"
-                                           href="<?= Url::to(['projects', 'id' => $model->id, 'new' => true]) ?>"><i
-                                                    class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>
-                                        </a>
-                                        <a class="btn btn-primary"
-                                           href="<?= Url::to(['view', 'id' => $model->id]) ?>"><?= Yii::t('main', 'Save & Continue') ?>&ensp;<i
-                                                    class="glyphicon glyphicon-chevron-right"></i></a>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            <?php } else { ?>
-                                <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'), ['view', 'id' => $model->id],
-                                    ['class' => 'btn btn-info']) ?>
-                            <?php } ?>
-                        </div>
-                        <div class="panel-body">
-                            <?= $this->render('categories_form', ['model' => $model, 'categoryModel' => $categoryModel]) ?>
+                                <?php } else { ?>
+                                    <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'), ['view', 'id' => $model->id],
+                                        ['class' => 'btn btn-info']) ?>
+                                <?php } ?>
+                            </div>
+                            <div class="card-body">
+                                <?= $this->render('categories_form', ['model' => $model, 'categoryModel' => $categoryModel]) ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,3 +121,5 @@ $categoryModel = new Category();
 
         <input type="hidden" id="confirm-text"
                value="<?= Yii::t('main', 'Are you sure you want to delete this item?') ?>">
+    </div>
+</div>

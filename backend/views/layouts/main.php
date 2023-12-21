@@ -5,6 +5,7 @@
 
 
 use backend\assets\AppAsset;
+use dmstr\adminlte\widgets\Menu;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -63,7 +64,7 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= \dmstr\widgets\Menu::widget([
+        <?= Menu::widget([
             'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
             'items' => [
                 ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],

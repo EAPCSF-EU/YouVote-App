@@ -81,7 +81,7 @@ class Project extends \common\components\ActiveRecord
      */
     public function getContest()
     {
-        return $this->hasOne(Contest::className(), ['id' => 'contest_id']);
+        return $this->hasOne(Contest::class, ['id' => 'contest_id']);
     }
 
     /**
@@ -89,7 +89,7 @@ class Project extends \common\components\ActiveRecord
      */
     public function getVotes()
     {
-        return $this->hasMany(Votes::className(), ['project_id' => 'id']);
+        return $this->hasMany(Votes::class, ['project_id' => 'id']);
     }
 
     /**
@@ -97,7 +97,7 @@ class Project extends \common\components\ActiveRecord
      */
     public function getVoters()
     {
-        return $this->hasMany(Voter::className(), ['id' => 'voter_id'])->viaTable('project_to_user', ['project_id' => 'id']);
+        return $this->hasMany(Voter::class, ['id' => 'voter_id'])->viaTable('project_to_user', ['project_id' => 'id']);
     }
 
     /**
@@ -105,7 +105,7 @@ class Project extends \common\components\ActiveRecord
      */
     public function getProjectToUsers()
     {
-        return $this->hasMany(ProjectToUser::className(), ['project_id' => 'id']);
+        return $this->hasMany(ProjectToUser::class, ['project_id' => 'id']);
     }
 
     public function beforeSave($insert)

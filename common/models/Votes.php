@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "votes".
@@ -26,6 +27,13 @@ class Votes extends \common\components\ActiveRecord
     public static function tableName()
     {
         return 'votes';
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
     }
 
     /**

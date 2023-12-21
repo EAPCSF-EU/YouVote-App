@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap4\Breadcrumbs;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -7,41 +8,60 @@ use yii\bootstrap\ActiveForm;
 $this->title = Yii::t('main', 'Account details');
 ?>
 
-<div class="contest-view">
-    <br>
-    <div class="row">
-        <div class="col-sm-12">
-            <div style="width: 230px; float: left;">
-                <?= $this->render("menu"); ?>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1><?= Html::encode($this->title) ?></h1>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-6">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ]) ?>
+            </div>
+        </div>
+    </div>
+</section>
 
-                <?php $form = ActiveForm::begin([
-                    'id' => 'contest-form',
-                    'layout' => 'horizontal'
-                ]); ?>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <span style="font-weight: bold; font-size: 1.2em"><?= Html::encode($this->title) ?></span>
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3">
+                        <?= $this->render("menu"); ?>
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-                                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-                                <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+                    <div class="col-8">
+
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'contest-form',
+                            'layout' => 'horizontal'
+                        ]); ?>
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <span style="font-weight: bold; font-size: 1.2em"><?= Html::encode($this->title) ?></span>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+                                        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                                        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <?= Html::submitButton('<i class="fa fa-check"></i> ' . Yii::t('main', 'Save'), [
+                                    'id' => 'contest-form-submit',
+                                    'class' => 'btn btn-primary pull-right']) ?>
+
+                                <div class="clearfix"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        <?= Html::submitButton('<i class="fa fa-check"></i> ' . Yii::t('main', 'Save'), [
-                            'id' => 'contest-form-submit',
-                            'class' => 'btn btn-primary pull-right']) ?>
-
-                        <div class="clearfix"></div>
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
-                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>

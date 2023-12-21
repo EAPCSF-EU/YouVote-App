@@ -70,7 +70,7 @@ AppAsset::register($this);
     ?>
     <nav class="navbar navbar-sub">
         <div class="container">
-            <h1 class="pull-left"><?=Yii::t('main',"Eastern Partnership Civil Society Hackathon");?></h1>
+            <h1 class="pull-left"><?= Yii::t('main', "Eastern Partnership Civil Society Hackathon"); ?></h1>
 
             <ul class="pull-right" id="lang-menu">
                 <li class="nav-item">
@@ -93,7 +93,8 @@ AppAsset::register($this);
                 <!--                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>-->
                 <!--                </button>-->
                 <div class="dropdown pull-left">
-                    <a href="#" class="dropdown-toggle" style="display: block;" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                    <a href="#" class="dropdown-toggle" style="display: block;" id="dropdownMenu1"
+                       data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="true">
                         <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         <!--                        <span class="caret"></span>-->
@@ -140,13 +141,10 @@ AppAsset::register($this);
             <div class="col-md-2">
                 <div class="pull-left"><?= Html::img("/files/images/footer_logo.png") ?> </div>
             </div>
-            <!--        <p class="pull-left">&copy; --><? //= Html::encode(Yii::$app->name) ?><!-- -->
-            <? //= date('Y') ?><!--</p>-->
 
-            <!--        <p class="pull-right">--><? //= Yii::powered() ?><!--</p>-->
             <div class="col-md-8 text-center" style="padding-top: 10px">
                 <span style="">
-                    <?=Yii::t('main','The project is funded by the European Union and implemented by the consortium led by GDSI Limited')?> .</span>
+                    <?= Yii::t('main', 'The project is funded by the European Union and implemented by the consortium led by GDSI Limited') ?> .</span>
 
             </div>
             <div class="col-md-2">

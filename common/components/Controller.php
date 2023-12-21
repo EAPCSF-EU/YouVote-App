@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Davron
- * Date: 3/19/2019
- * Time: 22:46
- */
-
 namespace common\components;
 
 use Yii;
@@ -36,6 +29,7 @@ class Controller extends \yii\web\Controller
             Yii::$app->language = Yii::$app->params['main_language'];
             $session->set('lang', Yii::$app->params['main_language']);
         }
+        parent::init();
     }
 
     public function actionLang($lang) {

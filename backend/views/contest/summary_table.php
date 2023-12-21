@@ -49,7 +49,7 @@ foreach($contest->projects as $project){
     echo "<td>" . $votes_count . "</td>";
     
     if($is_download_button_visible) 
-        echo "<th>".Html::a('<i class="fa fa-file-excel-o"></i> '.Yii::t('main', 'Download'), ['download','id'=>$project->id], ['class' => 'btn btn-success'])."</th>";
+        echo "<th style='min-width: 140px'>".Html::a('<i class="fa fa-file-excel"></i> '.Yii::t('main', 'Download'), ['download','id'=>$project->id], ['class' => 'btn btn-success'])."</th>";
     echo "</tr>";
     
 }

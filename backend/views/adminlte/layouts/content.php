@@ -1,6 +1,6 @@
 <?php
-use yii\widgets\Breadcrumbs;
-use dmstr\widgets\Alert;
+
+use dmstr\adminlte\widgets\Alert;
 $controllerNames = Yii::$app->controller->id;
 $js = <<<JS
     controllerName = '$controllerNames';
@@ -9,10 +9,8 @@ JS;
 $this->registerJs($js, \yii\web\View::POS_BEGIN);
 ?>
 <div class="content-wrapper">
-    <section class="content">
         <?= Alert::widget() ?>
         <?= $content ?>
-    </section>
 </div>
 
 <footer class="main-footer">
