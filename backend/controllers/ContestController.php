@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\ResultCalculator;
 use common\components\App;
 use common\models\Category;
 use common\models\Project;
@@ -182,6 +183,9 @@ class ContestController extends Controller
         ];
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionResults($id, $download = false)
     {
 
@@ -190,14 +194,18 @@ class ContestController extends Controller
         if ($contest == null)
             throw new NotFoundHttpException("Contest not found!");
 
-        $query2 = new Query();
-        $results_by_category = $query2
-            ->select("SUM(score) as total, category_id, project_id, count(id) as votes_count")
-            ->from(Votes::tableName())
-            ->where(['contest_id' => $id])
-            ->groupBy("category_id, project_id")->all();
+//        $results_by_category = (new Query())
+//            ->select("SUM(score) as total, category_id, project_id, count(id) as votes_count")
+//            ->from(Votes::tableName())
+//            ->where(['contest_id' => $id])
+//            ->groupBy("category_id, project_id")->all();
+//        echo "<pre>";
+//        print_r($results_by_category);
+//        exit();
 
-        if ($download == true) {
+        $calculator = new ResultCalculator();
+        $results_by_category = $calculator->calculate($id);
+        if ($download) {
             return $this->renderPartial('summary_table',
                 [
                     'results_by_category' => $results_by_category,
@@ -214,15 +222,15 @@ class ContestController extends Controller
             ]);
     }
 
-    public function actionDownload($id)
+    public function actionDownload($id): string
     {
         $project = Project::findOne($id);
         $votes = Votes::find()->where(['project_id' => $id])->orderBy(['user_id' => SORT_ASC])->all();
-        $voters = Votes::find()->where(['project_id' => $id])->groupBy(['user_id'])->asArray()->all();
+        $voters = Votes::find()->select(['user_id'])->where(['project_id' => $id])->groupBy(['user_id'])->asArray()->all();
         return $this->renderPartial('download', ['votes' => $votes, 'project' => $project, 'voters' => $voters]);
     }
 
-    public function actionDeleteProject($id)
+    public function actionDeleteProject($id): array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $model = Project::findOne($id);
