@@ -31,7 +31,6 @@ foreach ($contest->projects as $project) {
     $total_sum = 0;
     $votes_count = 0;
 
-//    print_r($results_by_category);
     foreach ($contest->categories as $category) {
         $not_null = false;
         foreach ($results_by_category as $category_result) {

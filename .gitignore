@@ -44,3 +44,4 @@ phpunit.phar
 /backend/web/assets/
 /frontend/runtime/
 /frontend/runtime/logs/
+/web/files/

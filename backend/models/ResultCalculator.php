@@ -15,7 +15,6 @@ class ResultCalculator
         $L = 0.3; // Lower threshold
         $U = 0.8; // Upper threshold
 
-//        SELECT DISTINCT user_id, project_id, score FROM votes
         $result = (new Query())
             ->select("COUNT(DISTINCT(project_id)) AS cnt, user_id")
             ->from(Votes::tableName())
@@ -27,19 +26,13 @@ class ResultCalculator
             ->count();
 
 
-        // Initialize arrays to store user ratings and weights
         $userWeights = [];
-//        echo "<pre>";
-//        echo "L = " . $L . "<br>";
-//        echo "U = " . $U . "<br>";
-//        echo "<hr>";
         foreach ($result as $row) {
             $user_id = $row['user_id'];
 
             // Calculate Ru for each user
             $totalProjectsRatedByUser = $row['cnt'];
             $Ru = $totalProjectsRatedByUser / $totalProjects;
-
 
             // Calculate user weight (Wu) based on Ru
             if ($Ru < $L) {
@@ -51,27 +44,18 @@ class ResultCalculator
             }
 
             $userWeights[$user_id] = $Wu;
-
-//            echo "user = " . $user_id . "<br>";
-//            echo "total_projects = " . $totalProjects . "<br>";
-//            echo "total_projects_rated_by_user = " . $totalProjectsRatedByUser . "<br>";
-//            echo "Ru = " . $Ru . "<br>";
-//            echo "weight = " . $Wu . "<br><br>";
         }
-//        echo "</pre>";
-//        echo "<hr>";
 
         $votes = (new Query())
-            ->select('SUM(score) as score_sum, user_id, project_id, category_id, count(*) as cnt')
+            ->select('SUM(score) as score_sum, user_id, project_id, category_id')
             ->from(Votes::tableName())
             ->where(['contest_id' => $contestId])
             ->groupBy(['project_id', 'category_id', 'user_id'])
             ->all();
-//        print_r($votes);exit();
 
         $projectScores = [];
         foreach ($votes as $row) {
-            $projectScores[$row['project_id']][$row['category_id']]['votes_count'] = 0;
+            $projectScores[$row['project_id']][$row['category_id']]['votes_count'] = 1;
             $score = $row['score_sum'] * $userWeights[$row['user_id']];
 
             if (isset($projectScores[$row['project_id']][$row['category_id']]['score'])) {
@@ -98,34 +82,6 @@ class ResultCalculator
                 $i++;
             }
         }
-
         return $result;
-//        print_r($projectScores);
-//            $project_id = $row['project_id'];
-//            $projectScore = 0;
-//            $totalWeight = 0;
-//
-//            foreach ($userRatings as $user_id => $ratings) {
-//                if (array_key_exists($project_id, $ratings)) {
-//                    $projectScore += $ratings[$project_id] * $userWeights[$user_id];
-//                    $totalWeight += $userWeights[$user_id];
-//                }
-//            }
-//
-//            if ($totalWeight > 0) {
-//                $finalScore = $projectScore / $totalWeight;
-//                echo "Aggregated Score for Project $project_id: $finalScore<br>";
-//            } else {
-//                echo "No votes for Project $project_id<br>";
-//            }
-//        }
-
-//        exit();
-
-//        $results_by_category = (new Query())
-//            ->select("SUM(score) as total, category_id, project_id, count(id) as votes_count")
-//            ->from(Votes::tableName())
-//            ->where(['contest_id' => $contestId])
-//            ->groupBy("category_id, project_id")->all();
     }
 }
