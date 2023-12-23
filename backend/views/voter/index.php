@@ -1,8 +1,8 @@
 <?php
 
 use yii\bootstrap4\Breadcrumbs;
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\VoterSearch */
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="col-sm-6">
                 <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'links' => $this->params['breadcrumbs'] ?? [],
                 ]) ?>
             </div>
         </div>
@@ -38,6 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= GridView::widget([
                             'dataProvider' => $dataProvider,
                             'filterModel' => $searchModel,
+                            'pager' => [
+                                'linkOptions' => ['class' => 'page-link'],
+                                'linkContainerOptions' => ['class' => 'page-item'],
+                                'prevPageCssClass' => 'p-back',
+                            ],
                             'columns' => [
                                 [
                                     'attribute' => 'id',
