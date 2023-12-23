@@ -2,7 +2,8 @@
 
 namespace backend\controllers;
 
-use backend\models\ResultCalculator;
+use backend\models\NewAlgorithm;
+use backend\models\StandardAlgorithm;
 use common\components\App;
 use common\models\Category;
 use common\models\Project;
@@ -194,17 +195,13 @@ class ContestController extends Controller
         if ($contest == null)
             throw new NotFoundHttpException("Contest not found!");
 
-//        $results_by_category = (new Query())
-//            ->select("SUM(score) as total, category_id, project_id, count(id) as votes_count")
-//            ->from(Votes::tableName())
-//            ->where(['contest_id' => $id])
-//            ->groupBy("category_id, project_id")->all();
-//        echo "<pre>";
-//        print_r($results_by_category);
-//        exit();
+        if ($contest->is_new_algo) {
+            $calculator = new NewAlgorithm();
+        } else {
+            $calculator = new StandardAlgorithm();
+        }
 
-        $calculator = new ResultCalculator();
-        $results_by_category = $calculator->calculate($id);
+        $results_by_category = $calculator->calculate($contest);
         if ($download) {
             return $this->renderPartial('summary_table',
                 [

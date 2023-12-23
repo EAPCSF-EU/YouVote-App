@@ -6,14 +6,14 @@ use common\models\Project;
 use common\models\Votes;
 use yii\db\Query;
 
-class ResultCalculator
+class NewAlgorithm
 {
-
-    public function calculate($contestId)
+    public function calculate($contest): array
     {
         // Define your lower and upper thresholds
-        $L = 0.3; // Lower threshold
-        $U = 0.8; // Upper threshold
+        $L = ($contest->lower_threshold) ? $contest->lower_threshold / 100 : 0.3; // Lower threshold
+        $U = ($contest->upper_threshold) ? $contest->upper_threshold / 100 : 0.8; // upper threshold
+        $contestId = $contest->id;
 
         $result = (new Query())
             ->select("COUNT(DISTINCT(project_id)) AS cnt, user_id")
