@@ -100,18 +100,18 @@ $projectModel = new Project();
                                             <h3 class="box-title"><?= Yii::t('main', 'Step 2 of 3') ?></h3>
                                         </div>
                                         <div class="bd-highlight">
-                                            <a class="btn btn-primary"
+                                            <a class="btn btn-primary text-light"
                                                href="<?= Url::to(['update', 'id' => $model->id, 'new' => true]) ?>"><i
                                                         class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>
                                             </a>
-                                            <a class="btn btn-primary"
+                                            <a class="btn btn-primary text-light"
                                                href="<?= Url::to(['categories', 'id' => $model->id, 'new' => true]) ?>"><?= Yii::t('main', 'Save & Continue') ?>&ensp;<i
                                                         class="glyphicon glyphicon-chevron-right"></i></a>
                                         </div>
                                     </div>
                                 <?php } else { ?>
                                     <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('main', 'Overview'), ['view', 'id' => $model->id],
-                                        ['class' => 'btn btn-info']) ?>
+                                        ['class' => 'btn btn-info text-light']) ?>
                                 <?php } ?>
                             </div>
 

@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\components\ActiveRecord;
 use common\components\App;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -38,13 +39,13 @@ use yii\helpers\ArrayHelper;
  * @property array $dateStatusData
  * @property array $publicStatusData
  */
-class Contest extends \common\components\ActiveRecord
+class Contest extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
 
-    public $timezone_diff=0;
+    public $timezone_diff = 0;
 
     const DATE_STATUS_UPCOMING = 1;
     const DATE_STATUS_LIVE = 2;
@@ -68,14 +69,14 @@ class Contest extends \common\components\ActiveRecord
     {
         return [
             [['title_en', 'title_ru', 'start_date', 'end_date', 'result_panel', 'range'], 'required'],
-            [['description_en', 'description_ru',], 'string', 'max'=>'1000'],
-            [['public', 'status', 'timezone_diff', 'result_panel', 'voters_limit'], 'integer'],
-            ['range', 'integer', 'integerOnly'=>true, 'min'=>2, 'max'=>100],
-            [['start_date', 'end_date', 'created_at', 'updated_at'], 'safe'],
+            [['description_en', 'description_ru',], 'string', 'max' => '1000'],
+            [['public', 'status', 'timezone_diff', 'result_panel', 'voters_limit', 'lower_threshold', 'upper_threshold'], 'integer'],
+            ['range', 'integer', 'integerOnly' => true, 'min' => 2, 'max' => 100],
+            [['start_date', 'end_date', 'created_at', 'updated_at', 'is_new_algo'], 'safe'],
             [['title_en', 'title_ru'], 'string', 'max' => 80],
             [['image'], 'string', 'max' => 255],
             [['permalink'], 'string', 'max' => 50],
-            ['start_date', 'checkDate', 'on'=>'check_date']
+            ['start_date', 'checkDate', 'on' => 'check_date']
         ];
     }
 
@@ -83,13 +84,12 @@ class Contest extends \common\components\ActiveRecord
     {
         $current_time = date("Y-m-d H:i");
 
-        $this->start_date = date("Y-m-d H:i", (strtotime($this->start_date) - $this->timezone_diff * 60)); 
-        $this->end_date = date("Y-m-d H:i", (strtotime($this->end_date) - $this->timezone_diff * 60)); 
-        
-        if($current_time >= $this->end_date){
+        $this->start_date = date("Y-m-d H:i", (strtotime($this->start_date) - $this->timezone_diff * 60));
+        $this->end_date = date("Y-m-d H:i", (strtotime($this->end_date) - $this->timezone_diff * 60));
+
+        if ($current_time >= $this->end_date) {
             $this->addError("end_date", Yii::t('main', 'End Date must be greater than current date'));
-        }
-        elseif($this->start_date >= $this->end_date){
+        } elseif ($this->start_date >= $this->end_date) {
             $this->addError("end_date", Yii::t('main', 'End date must be greater than start date'));
         }
     }
@@ -105,6 +105,9 @@ class Contest extends \common\components\ActiveRecord
             'title_ru' => Yii::t('main', 'Contest Title (Rus)'),
             'description_en' => Yii::t('main', 'Description(Eng)'),
             'description_ru' => Yii::t('main', 'Description(Rus)'),
+            'is_new_algo' => Yii::t('main', 'Use new algorithm to calculate the score'),
+            'lower_threshold' => Yii::t('main', 'Lower threshold for calculating aggregate score (%)'),
+            'upper_threshold' => Yii::t('main', 'Upper threshold for calculating aggregate score (%)'),
             'start_date' => Yii::t('main', 'Start Date'),
             'end_date' => Yii::t('main', 'End Date'),
             'public' => Yii::t('main', 'Public'),
@@ -131,7 +134,7 @@ class Contest extends \common\components\ActiveRecord
      */
     public function getProjects()
     {
-        return $this->hasMany(Project::className(), ['contest_id' => 'id'])->orderBy(['id'=>SORT_ASC]);
+        return $this->hasMany(Project::className(), ['contest_id' => 'id'])->orderBy(['id' => SORT_ASC]);
     }
 
     /**
@@ -145,11 +148,11 @@ class Contest extends \common\components\ActiveRecord
 
     public function beforeSave($insert)
     {
-        if($this->public === NULL)
+        if ($this->public === NULL)
             $this->public = 0;
 
-        if($this->status === NULL)
-        $this->status = self::STATUS_ACTIVE;
+        if ($this->status === NULL)
+            $this->status = self::STATUS_ACTIVE;
 
         #$this->start_date = date('Y-m-d H:i:s', (strtotime($this->start_date) - ($this->timezone_diff * 60)));
         #$this->end_date = date('Y-m-d H:i:s', (strtotime($this->end_date) - ($this->timezone_diff * 60)));
@@ -157,50 +160,58 @@ class Contest extends \common\components\ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->getTranslateAttribute('title');
     }
 
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->getTranslateAttribute('description');
     }
 
-    public static function getAllModelsAsArray() {
+    public static function getAllModelsAsArray()
+    {
         $title = 'title_' . Yii::$app->language;
-        return ArrayHelper::map(self::find()->select(['id',$title])->orderBy(['id'=>SORT_DESC])->all(),'id',$title);
+        return ArrayHelper::map(self::find()->select(['id', $title])->orderBy(['id' => SORT_DESC])->all(), 'id', $title);
     }
 
-    public function getImagePath() {
-      $path = Yii::getAlias('@webroot');
+    public function getImagePath()
+    {
+        $path = Yii::getAlias('@webroot');
 
-      if(strpos($path, 'admin')){
-        return $path."/..".Yii::$app->params['image_path_system'].$this->image;
-      }
-      else {
-        return $path.Yii::$app->params['image_path_system'].$this->image;
-      }
+        if (strpos($path, 'admin')) {
+            return $path . "/.." . Yii::$app->params['image_path_system'] . $this->image;
+        } else {
+            return $path . Yii::$app->params['image_path_system'] . $this->image;
+        }
     }
 
-    public function getImageUrl() {
+    public function getImageUrl()
+    {
         return App::getFrontend() . Yii::$app->params['image_path'] . $this->image;
     }
 
-    public function getHasImage() {
+    public function getHasImage()
+    {
         return !is_dir($this->imagePath) && file_exists($this->imagePath);
     }
 
-    public function getImageLink() {
-        return $this->hasImage ?  $this->imageUrl  : App::getDefaultImage();
+    public function getImageLink()
+    {
+        return $this->hasImage ? $this->imageUrl : App::getDefaultImage();
     }
 
-    public function deleteOldImage($image) {
-        $file = realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'frontend'.DIRECTORY_SEPARATOR.'web'.Yii::$app->params['image_path_system'].$image;
-        if(!is_dir($file) && file_exists($file))
+    public function deleteOldImage($image)
+    {
+        $file = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . 'web' . Yii::$app->params['image_path_system'] . $image;
+        if (!is_dir($file) && file_exists($file))
             unlink($file);
     }
 
-    public function deleteImage() {
-        if($this->hasImage)
+    public function deleteImage()
+    {
+        if ($this->hasImage)
             unlink($this->imagePath);
     }
 
@@ -212,7 +223,7 @@ class Contest extends \common\components\ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        if(array_key_exists('image',$changedAttributes) && $changedAttributes['image'] != $this->oldAttributes['image']) {
+        if (array_key_exists('image', $changedAttributes) && $changedAttributes['image'] != $this->oldAttributes['image']) {
             $this->deleteOldImage($changedAttributes['image']);
         }
         parent::afterSave($insert, $changedAttributes);
@@ -220,68 +231,74 @@ class Contest extends \common\components\ActiveRecord
 
     public function getDateTimeByFormat2($attr)
     {
-        return empty($this->$attr) ? false :  date('M d, Y, g:i A',strtotime($this->$attr));
+        return empty($this->$attr) ? false : date('M d, Y, g:i A', strtotime($this->$attr));
     }
 
-    public function getDateStatus() {
-        if(time()<strtotime($this->start_date))
+    public function getDateStatus()
+    {
+        if (time() < strtotime($this->start_date))
             return self::DATE_STATUS_UPCOMING;
-        if(time()>strtotime($this->end_date))
+        if (time() > strtotime($this->end_date))
             return self::DATE_STATUS_CLOSED;
         return self::DATE_STATUS_LIVE;
     }
 
-    public function getDateStatusData() {
+    public function getDateStatusData()
+    {
         $data = $this->getDateStatusesData();
         return $data[$this->dateStatus];
     }
 
-    private function getDateStatusesData() {
+    private function getDateStatusesData()
+    {
         return [
             self::DATE_STATUS_UPCOMING => [
-                'label' => Yii::t('main','Upcoming'),
+                'label' => Yii::t('main', 'Upcoming'),
                 'class' => 'warning',
             ],
             self::DATE_STATUS_LIVE => [
-                'label' => Yii::t('main','open'),
+                'label' => Yii::t('main', 'open'),
                 'class' => 'success'
             ],
             self::DATE_STATUS_CLOSED => [
-                'label' => Yii::t('main','closed'),
+                'label' => Yii::t('main', 'closed'),
                 'class' => 'primary'
             ],
         ];
     }
 
-    public function getPublicStatusData() {
+    public function getPublicStatusData()
+    {
         $data = $this->getPublicStatusesData();
         return $data[$this->public];
     }
 
-    private function getPublicStatusesData() {
+    private function getPublicStatusesData()
+    {
         return [
             self::PUBLIC_STATUS_NO => [
-                'label' => Yii::t('main','Draft'),
+                'label' => Yii::t('main', 'Draft'),
                 'class' => 'default'
             ],
             self::PUBLIC_STATUS_YES => [
-                'label' => Yii::t('main','Published'),
+                'label' => Yii::t('main', 'Published'),
                 'class' => 'primary'
             ]
         ];
     }
 
-    public function delete(){
+    public function delete()
+    {
         // $this->username = "deleted_".$this->id."_".$this->username;
         // $this->email = "deleted_".$this->id."_".$this->email;
         $this->status = self::STATUS_DELETED;
 
-echo "<pre>";
-        foreach($this->projects as $row){
+        echo "<pre>";
+        foreach ($this->projects as $row) {
             #$row->projectToUsers->delete();
             #print_r($row->projectToUsers);
             #echo "=======";
-            ProjectToUser::deleteAll(['project_id'=>$row->id]);
+            ProjectToUser::deleteAll(['project_id' => $row->id]);
         }
         // exit;
         // ProjectToUser::find()->where(['->delete();

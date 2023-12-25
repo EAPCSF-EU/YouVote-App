@@ -96,11 +96,11 @@ $categoryModel = new Category();
                                             <h3 class="box-title"><?= Yii::t('main', 'Step 3 of 3') ?></h3>
                                         </div>
                                         <div class="bd-highlight">
-                                            <a class="btn btn-primary"
+                                            <a class="btn btn-primary text-light"
                                                href="<?= Url::to(['projects', 'id' => $model->id, 'new' => true]) ?>"><i
                                                         class="glyphicon glyphicon-chevron-left"></i>&ensp;<?= Yii::t('main', 'Back') ?>
                                             </a>
-                                            <a class="btn btn-primary"
+                                            <a class="btn btn-primary text-light"
                                                href="<?= Url::to(['view', 'id' => $model->id]) ?>"><?= Yii::t('main', 'Save & Continue') ?>&ensp;<i
                                                         class="glyphicon glyphicon-chevron-right"></i></a>
                                         </div>

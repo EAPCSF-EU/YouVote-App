@@ -12,7 +12,7 @@ $time_left = strtotime($contest->end_date) - time();
 ?>
 <style>
 .wrap > .container{
-    padding-top: 0px !important;
+    padding-top: 0 !important;
 }
 </style>
 <script type="text/javascript">
@@ -34,7 +34,9 @@ $time_left = strtotime($contest->end_date) - time();
                 <p class="text-center">
                     
                 </p>
-                <h2 class="text-center"><?= $currentProject->title; ?></h2>
+                <h2 class="text-center">
+                    <?= $currentProject->id."-".$currentProject->title; ?>
+                </h2>
 
                 <br>
                 <?php

@@ -66,6 +66,20 @@ $this->registerJs($js, \yii\web\View::POS_READY);
         </div>
     </div>
     <div class="row">
+        <div class="col-12">
+            <?= $form->field($model, 'is_new_algo')->checkbox(['rows' => '4']); ?>
+        </div>
+    </div>
+    <div class="row" id="threshold_config">
+        <div class="col-5">
+            <?= $form->field($model, 'lower_threshold')->textInput(['type' => 'number']); ?>
+        </div>
+        <div class="col-5">
+            <?= $form->field($model, 'upper_threshold')->textInput(['type' => 'number']); ?>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-6">
             <?= $form->field($model, 'start_date')->widget(DateTimePicker::class, [
                 'removeButton' => false,
@@ -125,3 +139,17 @@ $this->registerJs($js, \yii\web\View::POS_READY);
     <input type="hidden" value="<?= $new ?>" name="new"/>
     <input type="hidden" id="image-value" value="<?= $model->imageLink ?>"/>
 <?php ActiveForm::end(); ?>
+
+<?php
+$js = <<<JS
+    var checkbox = document.getElementById('contest-is_new_algo');
+    var myDiv = document.getElementById('threshold_config');
+
+    checkbox.addEventListener('change', function () {
+        // If the checkbox is checked, display the div; otherwise, hide it
+        myDiv.style.display = checkbox.checked ? '' : 'none';
+    });
+JS;
+
+$this->registerJs($js);
+?>

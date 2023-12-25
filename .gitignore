@@ -42,3 +42,6 @@ phpunit.phar
 /backend/web/index-test.php
 /backend/web/robots.txt
 /backend/web/assets/
+/frontend/runtime/
+/frontend/runtime/logs/
+/web/files/

@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 contest-item">
                     <div class="card card-light">
                         <div class="card-body" style="overflow: visible">
                             <div class="row">
@@ -43,71 +43,67 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?= $form->field($searchModel, 'title_en')->textInput(['placeholder' => Yii::t('main', 'Search contest')])->label(false) ?>
                                     <?php ActiveForm::end() ?>
                                 </div>
+                                <div class="col-12">
+                                    <hr>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <hr>
-                            </div>
-                        </div>
 
-                        <?php
-                        if (count($dataProvider->getModels()) < 1) {
-                            echo "<div class='alert alert-warning'>" . Yii::t('main', 'No contest is found!') . "</div>";
-                        }
-                        ?>
-                        <?php foreach ($dataProvider->getModels() as $model) {
-                            /** @var $model Contest */
+                            <?php
+                            if (count($dataProvider->getModels()) < 1) {
+                                echo "<div class='alert alert-warning'>" . Yii::t('main', 'No contest is found!') . "</div>";
+                            }
                             ?>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <img src="<?= $model->imageLink ?>" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="pull-left c-title">
-                                            <?php
-                                            if (count($model->categories) < 2 || count($model->projects) < 2) {
-                                                echo '<span class="mb-2 badge badge-warning">' . Yii::t('main', 'Incompleted') . '</span>';
-                                            }
-                                            echo " ";
-                                            if (!$model->public) {
-                                                echo '<span class="mb-2 badge badge-warning">' . Yii::t('main', 'Unpublished') . '</span>';
-                                            }
-                                            ?>
-                                            <h4>
-                                                <?= Html::a($model->title, ["/contest/view/", 'id' => $model->id]) ?>
-                                            </h4>
-                                            <span class="" style="color:#555; font-weight: normal">
+                            <?php foreach ($dataProvider->getModels() as $model) {
+                                /** @var $model Contest */
+                                ?>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img src="<?= $model->imageLink ?>" alt="" class="img-responsive">
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="pull-left c-title">
+                                                <?php
+                                                if (count($model->categories) < 2 || count($model->projects) < 2) {
+                                                    echo '<span class="mb-2 badge badge-warning">' . Yii::t('main', 'Incompleted') . '</span>';
+                                                }
+                                                echo " ";
+                                                if (!$model->public) {
+                                                    echo '<span class="mb-2 badge badge-warning">' . Yii::t('main', 'Unpublished') . '</span>';
+                                                }
+                                                ?>
+                                                <h4>
+                                                    <?= Html::a($model->title, ["/contest/view/", 'id' => $model->id]) ?>
+                                                </h4>
+                                                <span class="" style="color:#555; font-weight: normal">
                                                 <span class="date_<?= $model->id ?>"><?= $model->start_date ?></span>
                                                 <span style='color:#777;'>to</span>
                                                 <span class="date_<?= $model->id ?>"><?= $model->end_date ?></span>
                                             </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <?php
+                                            if (count($model->categories) >= 2 && count($model->projects) >= 2)
+                                                echo '<h4 class="mr-4"><span class="badge badge-' . $model->dateStatusData['class'] . '">' . $model->dateStatusData['label'] . '</span></h4>';
+                                            ?>
                                         </div>
                                     </div>
-                                    <div class="col-2 text-right">
-                                        <?php
-                                        if (count($model->categories) >= 2 && count($model->projects) >= 2)
-                                            echo '<h4 class="mr-4"><span class="badge badge-' . $model->dateStatusData['class'] . '">' . $model->dateStatusData['label'] . '</span></h4>';
-                                        ?>
-                                    </div>
+                                    <hr>
                                 </div>
-                                <hr>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
 
-                        <div class="col-sm-12">
-                            <?= LinkPager::widget([
-                                'pagination' => $dataProvider->pagination
-                            ]) ?>
+                            <div class="col-sm-12">
+                                <?= LinkPager::widget([
+                                    'pagination' => $dataProvider->pagination
+                                ]) ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-
 <?php
 $js = <<<JS
 

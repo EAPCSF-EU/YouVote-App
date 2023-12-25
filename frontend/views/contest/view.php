@@ -10,7 +10,7 @@ $time_left = strtotime($contest->end_date) - time();
 ?>
 <style>
 .wrap > .container{
-    padding-top: 0px !important;
+    padding-top: 0 !important;
 }
 </style>
 <script type="text/javascript">
@@ -20,7 +20,7 @@ $time_left = strtotime($contest->end_date) - time();
     <div class="row">
         <div class="col-sm-12">
                 <h3 class="text-center">
-                    <?php 
+                    <?php
                         echo $contest->title;
                     ?>
                 </h3>
@@ -73,7 +73,7 @@ $time_left = strtotime($contest->end_date) - time();
         </div>
     </div>
 </div>
-<?php 
+<?php
 
 $script = <<<JS
         $(function ($) {
@@ -84,7 +84,7 @@ $script = <<<JS
             }
             if(time_left/60 < 15){
                 console.log(time_left);
-                if(time_left % 60 == 0){
+                if(time_left % 60 === 0){
                     $.notify({
                         title: '',
                         message: 'Voting will finish in ' + (time_left/60) +' minutes',

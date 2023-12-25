@@ -33,9 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                             </div>
                             <div class="card-body">
-
                                 <hr>
-
                                 <div class="col-sm-12">
                                     <?php
                                     echo Yii::$app->controller->renderPartial('summary_table',
@@ -50,7 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

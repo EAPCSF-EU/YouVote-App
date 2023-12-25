@@ -38,8 +38,6 @@ $this->title = 'My Yii Application';
                                 echo "<span class='label label-info'>" . Yii::t('main', 'upcoming') . "</span>";
                             elseif (time() >= strtotime($contest->start_date) && time() <= strtotime($contest->end_date)) {
                                 echo "<span class='label label-custom label-custom-info'>" . Yii::t('main', 'voting is started') . "</span>";
-//                                echo "<span class='label label-custom label-custom-primary'>" . Yii::t('main', 'The voting ends in ')
-//                                    . "<span style='font-size:1.3em;padding:5px 0;'>" . gmdate("H:i:s", strtotime($contest->end_date) - time()) . "</span></span>";
                             } else
                                 echo "<span class='label label-warning'>" . Yii::t('main', 'closed') . "</span>";
                             ?>
@@ -53,7 +51,6 @@ $this->title = 'My Yii Application';
 
                             ?>
                         </p>
-                        <?//= Yii::t('main', 'About the contest'); ?><!--</b></p>-->
                         <div class="col-sm-12">
                         <?php
                         if ($contest->image)
@@ -69,7 +66,7 @@ $this->title = 'My Yii Application';
                             <b style=""><?= Yii::t('main', 'Start Date'); ?></b>:
                         </div>
                         <div class="col-sm-10">
-                            <?#= Date("l, F j Y g:i A", strtotime($contest->start_date)) ?>
+
                             <span class="date_<?= $contest->id ?>"><?= $contest->start_date ?></span>
                         </div>
                         <div class="col-sm-2">
@@ -77,7 +74,6 @@ $this->title = 'My Yii Application';
                         </div>
                         <div class="col-sm-10">
                             <span class="date_<?= $contest->id ?>"><?= $contest->end_date ?></span>
-                            <?#= Date("l, F j Y g:i A", strtotime($contest->end_date)) ?>
                         </div>
                         <div class="clearfix"></div>
                         </p>
