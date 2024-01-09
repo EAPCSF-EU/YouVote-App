@@ -13,7 +13,7 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=7.4.0",
+    "php": ">=7.2.0",
     "yiisoft/yii2": "~2.0.49",
     "yiisoft/yii2-bootstrap4": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.1.0",
